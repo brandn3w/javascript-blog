@@ -78,13 +78,23 @@ for(let article of articles){
  
 
   /* find the title element */
-  const articleTitle = article.querySelector(".post-title").innerHTML;
+  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+  console.log('articleTitle:', articleTitle);
+ 
+ 
   /* get the title from the title element */
+
+  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
   /* create HTML of the link */
 
-  /* insert link into titleList */
+  const linkHTML ='<li><a href="#' + articleID + '"><span>' +articleTitle + '</span></a></li>';
+console.log(linkHTML);
 
+
+  /* insert link into titleList */
+  
+ 
 }
 
 
@@ -94,11 +104,9 @@ for(let article of articles){
    
   for (let article of articleList){
     
+   */
    
-    const linkHTML = '<li><a href="#' + id + '"><span>' + articleTitle + '</span></a></li>';
-  console.log(linkHTML);  
-   
-  titleList.innerHTML = titleList.innerHTML + linkHTML;*/
+  titleList.innerHTML = titleList.innerHTML + linkHTML;
   }
    
    generateTitleLinks();

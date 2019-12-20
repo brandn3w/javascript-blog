@@ -71,44 +71,57 @@ const articles = document.querySelectorAll(optArticleSelector + customSelector);
 let html = '';
 for(let article of articles){
 
-  /* get the article id */
+  /* DONE get the article id */
 
-  const articleId = article.getAttribute("id");
-  console.log("id", articleId);
+ 
  
 
   /* find the title element */
-  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-  console.log('articleTitle:', articleTitle);
+ 
  
  
   /* get the title from the title element */
 
-  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
   /* create HTML of the link */
 
-  const linkHTML ='<li><a href="#' + articleID + '"><span>' +articleTitle + '</span></a></li>';
-console.log(linkHTML);
+ 
 
 
   /* insert link into titleList */
   
+  
  
+  /* ... */
+
+  /* find all the articles and save them to variable: articles */
+  const articles = document.querySelector(".post");
+  /* ... */
+
+  let html = '';
+
+  for(let article of articles){
+    /* get the article id */
+     const articleId = article.getAttribute("id");
+  console.log("id", articleId);
+
+    /* find the title element */
+    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+  console.log('articleTitle:', articleTitle);
+
+    /* get the title from the title element */
+  
+  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+
+    /* create HTML of the link */
+     const linkHTML ='<li><a href="#' + articleID + '"><span>' +articleTitle + '</span></a></li>';
+console.log(linkHTML);
+
+    /* insert link into html variable */
+    html = html + linkHTML;
+  }
+
+  titleList.innerHTML = html;
 }
 
-
-
-
-  /*const articleList = document.querySelectorAll(".posts .post");
-   
-  for (let article of articleList){
-    
-   */
-   
-  titleList.innerHTML = titleList.innerHTML + linkHTML;
-  }
-   
-   generateTitleLinks();
-  
-  
+generateTitleLinks();

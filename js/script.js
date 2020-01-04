@@ -213,21 +213,25 @@ const articles = document.querySelectorAll(optArticleSelector);
 for (let article of articles){
 
 const authorWrapper = article.querySelector(optArticleQuerySelector);
-const authorName = article.getAttribute('post-author');
+const authorNames = article.getAttribute('data-author');
 
-    /* generate HTML of the link ??? */
+    console.log("get tags", authorNames);
 
-  
-    
-    AuthorWrapper.innerHTML=authorLink;
-    /* add generated code to html variable */
+
+    authorWrapper.innerHTML=authorLink;
+
     html = html + linkHTML;
 
   }
-  /* END LOOP: for each tag */
 
+    for (let author of authorNames) {
+
+      const linkHTML = '<li><a href="#" + author>' + author + "</a></li>";
+
+      html = html + linkHTML;
+
+    }
+    tagsWrapper.innerHTML = html;
 }
-/* insert HTML of all the links into the tags wrapper ????*/
 
-/* END LOOP: for every article: */
 

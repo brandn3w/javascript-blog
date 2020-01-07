@@ -7,6 +7,9 @@ const optArticleSelector = ".post",
 const optArticleTagsSelector = ' .post-tags .list';
 const optArticleAuthorSelector = '.post-author';
 const optTagListSelector = ".tags.list";
+const optCloudClassCount = 5;
+const optCloudClassPrefix = "tag-size-";
+
 
 const titleClickHandler = function (event) {
   event.preventDefault();
@@ -112,6 +115,10 @@ function calculateTagsParams(tags) {
   return params;
 }
 
+//CALCULATE TAGS CLASS
+
+function calculateTagClass(count, params){}
+
 //GENERATE TAGS
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
@@ -144,7 +151,7 @@ const tagList = article.querySelector(optArticleTagsSelector);
       } else {
         allTags[tag]++;
       }
-      /* [NEW] add generated code to allTags array */
+      /* [NEW] add generated code to allTags array ???*/
       allTags.push(linkHTML);
     }
     /* END LOOP: for each tag */
@@ -160,16 +167,17 @@ const tagsParams = calculateTagsParams(allTags);
 console.log('tagsParams:', tagsParams)
 
 /*[NEW] START LOOP : for each tag in allTags: poza funkcja??? */
-//for (let tag in allTags) {
-
+for (let tag in allTags) {  
   /*[NEW] generate code of a link and add it to allTagsHTML */
-  tagList.innerHTML = allTagsHTML;
-}
+  const tagLinkHTML ='<li>' + calculateTagClass(allTags[tag], tagsParam) + '</li>';
+  console.log('tagLinkHTML', tagLinkHTML);
+allTagsHTML += tagLinkHTML;
 
 /*[NEW] END LOOP: for each tag allTags:*/
+}
 
-/* [NEW] add html from allTagsHTML to tagList */
-
+/*[NEW] add html from allTagsHTML to tagList */
+tagList.innerHTML=allTagsHTML;
 
 generateTags();
 
@@ -285,3 +293,5 @@ function addClickListenerToAuthors() {
   }
 }
 addClickListenersToAuthors();
+
+}

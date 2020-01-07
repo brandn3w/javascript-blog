@@ -123,55 +123,52 @@ function generateTags() {
 /*find tags wrapper*/
 const tagList = article.querySelector(optArticleTagsSelector);
     /* make html variable with empty string */
-    let html = "";
+    let html = '';
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute("data-tags");
     //console.log("get tags", articleTags);
-
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
-
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
 
       /* generate HTML of the link */
-      //const linkHTML = '<li><a href="#" + tag>' + tag + "</a></li>";
+      const linkHTML = '<li><a href="#" + tag>' + tag + "</a></li>";
 
       /* add generated code to html variable */
       html = html + linkHTML + ' ';
       /* [NEW] check if this link is NOT already in allTags */
       if (!allTags.hasOwnProperty(tag)) {
-        /* [NEW] add tag to allTags array*/
+        /* [NEW] add tag to allTags object*/
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
       }
       /* [NEW] add generated code to allTags array */
+      allTags.push(linkHTML);
     }
     /* END LOOP: for each tag */
     tagList.innerHTML = html;  
   /* insert HTML of all the links into the tags wrapper*/
   }
   /* END LOOP: for every article: */
-}
 /* [NEW] find list of tags in right column */
 const tagList = document.querySelector('.tags');
+
 const tagsParams = calculateTagsParams(allTags);
 /*NEW create variable for all links HTML code*/
-let allTagsHTML = ' ';
-const tagsParams = calculateTagsParams(allTags);
 console.log('tagsParams:', tagsParams)
 
 /*[NEW] START LOOP : for each tag in allTags: poza funkcja??? */
-for (let tag in allTags) {
+//for (let tag in allTags) {
+
   /*[NEW] generate code of a link and add it to allTagsHTML */
-  allTagsHTML += tag + '(' + allTags[tag] + ')';
+  tagList.innerHTML = allTagsHTML;
 }
 
 /*[NEW] END LOOP: for each tag allTags:*/
 
 /* [NEW] add html from allTagsHTML to tagList */
-tagList.innerHTML = allTagsHTML;
 
 
 generateTags();
@@ -286,10 +283,5 @@ function addClickListenerToAuthors() {
 
     /* END LOOP: for each link */
   }
-
 }
-
-
-
-
-
+addClickListenersToAuthors();

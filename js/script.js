@@ -259,7 +259,12 @@ let allTagsHTML= '';
 
     const articles = document.querySelectorAll(optArticleSelector);
 
+    let htmlSidebar = '';
+    const authorSidebar = document.querySelector(optAuthorListSelector);
+
     for (let article of articles) {
+
+      let author = article.getAttribute('data-author');
       /*find author wrapper*/
       const authorList = article.querySelector(optArticleAuthorSelector);
 
@@ -278,9 +283,14 @@ let allTagsHTML= '';
       /* add generated code to html variable */
       html = html + authorLinkHTML;
       /* add html for each author wrapper */
-      authorList.innerHTML = articleAuthor;
+      authorList.innerHTML = html;
 
     }
+    for (let author in allAuthors){
+const asideAuthorLinkHTML = '<li><a href="#author-' + author + '"><span>' + author + " (" + allAuthors[author] + ")" + '</span></a></li>';
+      htmlSidebar += asideAuthorLinkHTML;
+    }
+    authorSidebar.innerHTML = htmlSidebar;
   }
   generateAuthors();
 
